@@ -1,75 +1,133 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React from "react";
+import { ScrollView, Text, View, StyleSheet } from "react-native";
+import { Card } from "../../components/Card";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+// Sample user financial data
+const userData = {
+  name: "UIIAI",
+  income: "RM 2,850",
+  strEligible: true,
+  householdSize: 4,
+  dependents: 2,
+  location: "Selangor",
+  housing: "Rented",
+  monthlyCost: "RM 950",
+};
 
-export default function HomeScreen() {
+export default function Index() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.greeting}>Hello, {userData.name}</Text>
+        <Text style={styles.subheading}>Financial Summary</Text>
+      </View>
+
+      <Card 
+        title="Monthly Income" 
+        titleMalay="Pendapatan Bulanan"
+        style={styles.incomeCard}
+      >
+        <Text style={styles.incomeText}>{userData.income}</Text>
+        <View style={styles.eligibilityBadge}>
+          <Text style={styles.eligibilityText}>
+            {userData.strEligible ? "STR Eligible" : "Not STR Eligible"}
+          </Text>
+        </View>
+      </Card>
+
+      <Card 
+        title="Household Information" 
+        titleMalay="Maklumat Isi Rumah"
+      >
+        <View style={styles.infoRow}>
+          <Text style={styles.infoLabel}>Household Size:</Text>
+          <Text style={styles.infoValue}>{userData.householdSize} people</Text>
+        </View>
+        <View style={styles.infoRow}>
+          <Text style={styles.infoLabel}>Dependents:</Text>
+          <Text style={styles.infoValue}>{userData.dependents}</Text>
+        </View>
+        <View style={styles.infoRow}>
+          <Text style={styles.infoLabel}>Location:</Text>
+          <Text style={styles.infoValue}>{userData.location}</Text>
+        </View>
+      </Card>
+
+      <Card 
+        title="Housing" 
+        titleMalay="Perumahan"
+      >
+        <View style={styles.infoRow}>
+          <Text style={styles.infoLabel}>Type:</Text>
+          <Text style={styles.infoValue}>{userData.housing}</Text>
+        </View>
+        <View style={styles.infoRow}>
+          <Text style={styles.infoLabel}>Monthly Cost:</Text>
+          <Text style={styles.infoValue}>{userData.monthlyCost}</Text>
+        </View>
+      </Card>
+
+      <View style={styles.footer} />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: "#F2F2F7",
   },
-  stepContainer: {
-    gap: 8,
+  header: {
+    padding: 16,
+    paddingTop: 24,
+  },
+  greeting: {
+    fontSize: 28,
+    fontWeight: "700",
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  subheading: {
+    fontSize: 16,
+    color: "#8E8E93",
+    marginBottom: 8,
+  },
+  incomeCard: {
+    backgroundColor: "#F0F7FF",
+  },
+  incomeText: {
+    fontSize: 32,
+    fontWeight: "700",
+    color: "#007AFF",
+    marginBottom: 8,
+  },
+  eligibilityBadge: {
+    backgroundColor: "#34C759",
+    alignSelf: "flex-start",
+    paddingVertical: 4,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+  },
+  eligibilityText: {
+    color: "white",
+    fontWeight: "600",
+    fontSize: 12,
+  },
+  infoRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 8,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: "#E5E5EA",
+  },
+  infoLabel: {
+    fontSize: 16,
+    color: "#8E8E93",
+  },
+  infoValue: {
+    fontSize: 16,
+    fontWeight: "600",
+  },
+  footer: {
+    height: 32,
   },
 });

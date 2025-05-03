@@ -1,43 +1,73 @@
-import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Tabs } from "expo-router";
+import { Home, FileText, MessageCircle } from "lucide-react-native";
+import { View } from "react-native";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+        tabBarStyle: {
+          elevation: 0,
+          shadowOpacity: 0.1,
+          shadowRadius: 8,
+          shadowOffset: { width: 0, height: -3 },
+          borderTopWidth: 0,
+          backgroundColor: "#FFFFFF",
+          height: 60,
+          paddingBottom: 8,
+        },
+        tabBarActiveTintColor: "#007AFF",
+        tabBarInactiveTintColor: "#8E8E93",
+        tabBarLabelStyle: {
+          fontWeight: '500',
+          fontSize: 12,
+        },
+        headerStyle: {
+          shadowOpacity: 0.1,
+          shadowRadius: 8,
+          shadowOffset: { width: 0, height: 1 },
+          borderBottomWidth: 0,
+          backgroundColor: '#FFFFFF',
+        },
+        headerTitleStyle: {
+          fontWeight: '600',
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color, size }) => <Home size={size} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="plan"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: '',
+          tabBarIcon: ({ color }) => (
+            <View style={{ 
+              backgroundColor: '#0061C2FF', 
+              borderRadius: 25, 
+              padding: 20,
+              marginTop: -46,
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.1,
+              shadowRadius: 4,
+              elevation: 2,
+            }}>
+              <FileText size={32} color={"#FFFFFF"} />
+            </View>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="ask"
+        options={{
+          title: 'Ask',
+          tabBarIcon: ({ color, size }) => <MessageCircle size={size} color={color} />,
         }}
       />
     </Tabs>
