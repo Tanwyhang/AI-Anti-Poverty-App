@@ -1,26 +1,23 @@
 import React from 'react';
-import { View, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { StyleSheet, Text, View, ViewStyle } from 'react-native';
 
 interface CardProps {
-  title?: string;
+  title?: React.ReactNode; // Changed from string to React.ReactNode
   titleMalay?: string;
   children: React.ReactNode;
   style?: ViewStyle;
-  titleStyle?: TextStyle;
 }
 
-export const Card: React.FC<CardProps> = ({ 
-  title, 
-  titleMalay, 
-  children, 
-  style,
-  titleStyle,
-}) => {
+export const Card: React.FC<CardProps> = ({ title, titleMalay, children, style }) => {
   return (
-    <View style={[styles.card, style]}>
-      {(title || titleMalay) && (
+    <View style={[styles.container, style]}>
+      {title && (
         <View style={styles.titleContainer}>
-          {title && <Text style={[styles.title, titleStyle]}>{title}</Text>}
+          {typeof title === 'string' ? (
+            <Text style={styles.title}>{title}</Text>
+          ) : (
+            title // Render the ReactNode directly
+          )}
           {titleMalay && <Text style={styles.titleMalay}>{titleMalay}</Text>}
         </View>
       )}
@@ -30,30 +27,32 @@ export const Card: React.FC<CardProps> = ({
 };
 
 const styles = StyleSheet.create({
-  card: {
+  container: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 16,
+    borderRadius: 12,
     padding: 16,
     marginVertical: 8,
     marginHorizontal: 16,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
-    shadowRadius: 8,
+    shadowRadius: 4,
     elevation: 2,
   },
   titleContainer: {
     marginBottom: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   title: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: '600',
     color: '#000',
   },
   titleMalay: {
     fontSize: 14,
-    fontWeight: '400',
-    color: '#666',
-    marginTop: 2,
+    color: '#8E8E93',
+    fontStyle: 'italic',
   },
 });

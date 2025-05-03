@@ -1,44 +1,56 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Svg, { Circle } from 'react-native-svg';
+import { StyleSheet, View } from 'react-native';
+import { Circle, Svg } from 'react-native-svg';
+import { isWeb } from '../utils/platform';
 
 interface ProgressCircleProps {
-  progress: number; // 0 to 1
+  progress: number;
   size?: number;
   strokeWidth?: number;
   progressColor?: string;
-  bgColor?: string;
+  backgroundColor?: string;
 }
 
-export const ProgressCircle: React.FC<ProgressCircleProps> = ({
-  progress,
+export const ProgressCircle: React.FC<ProgressCircleProps> = ({ 
+  progress, 
   size = 120,
   strokeWidth = 12,
-  progressColor = '#007AFF',
-  bgColor = '#E9E9EB',
+  progressColor = '#0EA5E9',
+  backgroundColor = '#E5E5EA'
 }) => {
+  // Ensure progress is between 0 and 1
+  const validProgress = Math.min(Math.max(progress, 0), 1);
+  
   const radius = (size - strokeWidth) / 2;
   const circumference = radius * 2 * Math.PI;
-  const strokeDashoffset = circumference - (progress * circumference);
+  const strokeDashoffset = circumference - (circumference * validProgress);
   
-  const percentage = Math.round(progress * 100);
+  const center = size / 2;
+  
+  // Apply web-specific styles if needed
+  const webStyles = isWeb ? {
+    transform: `rotate(-90deg)`,
+    transformOrigin: 'center center'
+  } : {
+    transform: [{ rotate: '-90deg' }]
+  };
 
   return (
-    <View style={styles.container}>
-      <Svg width={size} height={size} style={styles.svg as any}>
+    <View style={[styles.container, { width: size, height: size }]}>
+      <Svg width={size} height={size} style={webStyles}>
         {/* Background Circle */}
         <Circle
-          cx={size / 2}
-          cy={size / 2}
+          cx={center}
+          cy={center}
           r={radius}
-          stroke={bgColor}
+          stroke={backgroundColor}
           strokeWidth={strokeWidth}
           fill="transparent"
         />
         {/* Progress Circle */}
         <Circle
-          cx={size / 2}
-          cy={size / 2}
+          cx={center}
+          cy={center}
           r={radius}
           stroke={progressColor}
           strokeWidth={strokeWidth}
@@ -48,34 +60,13 @@ export const ProgressCircle: React.FC<ProgressCircleProps> = ({
           fill="transparent"
         />
       </Svg>
-      <View style={styles.textContainer}>
-        <Text style={styles.percentageText}>{percentage}%</Text>
-        <Text style={styles.completedText}>Completed</Text>
-      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     justifyContent: 'center',
-  },
-  svg: {
-    transform: [{ rotate: '-90deg' }],
-  },
-  textContainer: {
-    position: 'absolute',
     alignItems: 'center',
-  },
-  percentageText: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: '#007AFF',
-  },
-  completedText: {
-    fontSize: 14,
-    color: '#8E8E93',
-    marginTop: 4,
   },
 });

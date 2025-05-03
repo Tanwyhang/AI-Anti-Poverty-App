@@ -1,11 +1,12 @@
 import { Redirect } from 'expo-router';
-import React, { useEffect } from 'react';
-import { View, StyleSheet, ActivityIndicator, Text } from 'react-native';
+import React from 'react';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 /**
  * Root index file that redirects to the tabbed navigation
  * Could be extended to include splash logic, authentication checks, etc.
  */
+
 export default function Index() {
   // You could add initialization logic here if needed
   // For example, loading user data, checking auth status, etc.

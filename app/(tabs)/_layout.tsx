@@ -1,21 +1,23 @@
-import React from 'react';
 import { Tabs } from "expo-router";
-import { Home, FileText, MessageCircle } from "lucide-react-native";
+import { FileText, Home, MessageCircle } from "lucide-react-native";
+import React from 'react';
 import { View } from "react-native";
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
+        headerShown: false,
         tabBarStyle: {
           elevation: 0,
+          paddingTop: 8,
           shadowOpacity: 0.1,
           shadowRadius: 8,
           shadowOffset: { width: 0, height: -3 },
           borderTopWidth: 0,
           backgroundColor: "#FFFFFF",
-          height: 60,
-          paddingBottom: 8,
+          height: 100,
+          paddingBottom: 16,
         },
         tabBarActiveTintColor: "#007AFF",
         tabBarInactiveTintColor: "#8E8E93",
@@ -28,7 +30,7 @@ export default function TabLayout() {
           shadowRadius: 8,
           shadowOffset: { width: 0, height: 1 },
           borderBottomWidth: 0,
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#D48888FF',
         },
         headerTitleStyle: {
           fontWeight: '600',
@@ -51,14 +53,16 @@ export default function TabLayout() {
               backgroundColor: '#0061C2FF', 
               borderRadius: 25, 
               padding: 20,
-              marginTop: -46,
-              shadowColor: '#000',
               shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.1,
-              shadowRadius: 4,
+              shadowOpacity: 0.5,
+              shadowRadius: 24,
+              shadowColor: '#0080FFFF',
               elevation: 2,
+              width: 120,
+              alignItems: 'center',
+
             }}>
-              <FileText size={32} color={"#FFFFFF"} />
+              <FileText size={32} color={"#FFFFFF"}  />
             </View>
           ),
         }}
