@@ -107,7 +107,7 @@ export default function PlanScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
         <View style={styles.header}>
           <View style={styles.titleContainer}>
             <Feather name="clipboard" size={28} color={theme.primary} style={styles.titleIcon} />
@@ -128,12 +128,14 @@ export default function PlanScreen() {
               size={144} 
               strokeWidth={4}
             />
-            <View style={styles.progressIconContainer}/>
+            <View style={styles.percentageTextContainer}>
+              <Text style={styles.percentageText}>{Math.round(progress * 100)}%</Text>
+            </View>
           </View>
-            <Text style={[styles.progressText, { color: theme.textLight }, {paddingHorizontal: 20}]}>
-              <Text style={{ fontWeight: '700', color: theme.teal }}>{completedTasks} of {tasks.length}</Text> tasks completed
-              <Feather name="check-circle" style={{ padding: 10 }} size={32} color={theme.teal} />
-            </Text>
+          <Text style={[styles.progressText, { color: theme.textLight }, {paddingHorizontal: 20}]}>
+            <Text style={{ fontWeight: '700', color: theme.teal }}>{completedTasks} of {tasks.length}</Text> tasks completed
+            <Feather name="check-circle" style={{ padding: 10 }} size={24} color={theme.teal}/>
+          </Text>
         </View>
         
         <View style={styles.tasksContainer}>
@@ -175,7 +177,7 @@ const styles = StyleSheet.create({
   },
   header: {
     padding: 20,
-    paddingTop: 24,
+    paddingTop: 64,
   },
   titleContainer: {
     flexDirection: 'row',
@@ -202,10 +204,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  progressIconContainer: {
+  percentageTextContainer: {
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  percentageText: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: theme.teal,
   },
   progressText: {
     fontSize: 16,
@@ -228,6 +235,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   footer: {
-    height: 32,
+    height: 60,
   },
 });

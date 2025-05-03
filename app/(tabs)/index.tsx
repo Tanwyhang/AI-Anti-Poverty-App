@@ -6,8 +6,8 @@ import { Card } from "../../components/Card";
 
 // Sample user financial data
 const userData = {
-  name: "Wyhang",
-  income: "RM 2,850.30",
+  name: "Tung",
+  income: "RM 2,850",
   strEligible: true,
   householdSize: 4,
   dependents: 2,
@@ -26,35 +26,35 @@ const userData = {
   // Spending allocation data - Modified to include RM suffix in name for legend
   spendingAllocation: [
     {
-      name: `Food (RM ${950})`,
+      name: `Food`,
       amount: 950,
       color: "#00FFAEFF",
       legendFontColor: "#7F7F7F",
       legendFontSize: 12
     },
     {
-      name: `Housing (RM ${950})`,
+      name: `Housing`,
       amount: 950,
       color: "#30E7FFFF",
       legendFontColor: "#7F7F7F",
       legendFontSize: 12
     },
     {
-      name: `Transport (RM ${350})`,
+      name: `Transport`,
       amount: 350,
       color: "#5856D6",
       legendFontColor: "#7F7F7F",
       legendFontSize: 12
     },
     {
-      name: `Utilities (RM ${250})`,
+      name: `Utilities`,
       amount: 250,
       color: "#4534C7FF",
       legendFontColor: "#7F7F7F",
       legendFontSize: 12
     },
     {
-      name: `Others (RM ${300})`,
+      name: `Others`,
       amount: 300,
       color: "#007AFF",
       legendFontColor: "#7F7F7F",
@@ -104,10 +104,10 @@ const chartConfig = {
 const theme = {
   primary: "#0284C7", // Blue
   secondary: "#20D4BCFF", // Light blue
-  background: "#F0F9FF",
+  background: "#FFFFFFFF",
   text: "#0C4A6E",
   textLight: "#64748B",
-  cardBackground: "#FFFFFDFF",
+  cardBackground: "#FAFFFFFF",
   red: "#EF6644FF", // Red
 };
 
@@ -152,7 +152,7 @@ export default function Index() {
   const getMaxHeight = (cardId: string) => {
     return animations[cardId as keyof typeof animations].interpolate({
       inputRange: [0, 1],
-      outputRange: [0, 350] // Adjust based on content
+      outputRange: [0, 500] // Increased from 350 to 500 to prevent clipping
     });
   };
 
@@ -161,7 +161,7 @@ export default function Index() {
     const isExpanded = expandedCard === cardId;
     return (
       <TouchableOpacity 
-        style={styles.toggleButton} 
+        style={styles.toggleButton}
         onPress={() => toggleCardExpansion(cardId)}
       >
         {isExpanded ? 
@@ -200,7 +200,6 @@ export default function Index() {
         style={styles.incomeCard}
       >
         <View style={styles.cardHeader}>
-          <Feather name="dollar-sign" size={24} color={theme.primary} />
           <Text style={styles.incomeText}>{userData.income}</Text>
         </View>
         <View style={styles.eligibilityBadge}>
@@ -561,7 +560,7 @@ const styles = StyleSheet.create({
   },
   header: {
     padding: 16,
-    paddingTop: 24,
+    paddingTop: 64,
     alignItems: 'center',
   },
   profileContainer: {

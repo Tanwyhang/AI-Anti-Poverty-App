@@ -30,17 +30,18 @@ export default function TabLayout() {
           shadowRadius: 8,
           shadowOffset: { width: 0, height: 1 },
           borderBottomWidth: 0,
-          backgroundColor: '#D48888FF',
+          backgroundColor: '#FFFFFFFF',
         },
         headerTitleStyle: {
           fontWeight: '600',
+          
         },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: '',
           tabBarIcon: ({ color, size }) => <Home size={size} color={color} />,
         }}
       />
@@ -70,7 +71,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="ask"
         options={{
-          title: 'Ask',
+          title: '',
           tabBarIcon: ({ color, size }) => <MessageCircle size={size} color={color} />,
         }}
       />

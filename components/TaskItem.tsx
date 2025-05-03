@@ -63,7 +63,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
 
   const maxHeight = animation.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, 300], // Adjust based on content height
+    outputRange: [0, 800], // Adjust based on content height
   });
 
   const getProgressColor = (rate?: number) => {
@@ -255,17 +255,20 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
-    marginVertical: 8,
+    borderWidth: 1,
+    borderColor: '#98E3FCFF',
+    marginVertical: 12,
     marginHorizontal: 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 2,
     overflow: 'hidden',
   },
   completedContainer: {
-    opacity: 0.7,
+    opacity: 0.4  ,
+    borderWidth: 0,
     backgroundColor: '#F2F2F7',
   },
   mainContent: {

@@ -13,6 +13,7 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
+      
       <ActivityIndicator size="large" color="#007AFF" />
       <Text style={styles.loadingText}>Loading your financial planner...</Text>
       

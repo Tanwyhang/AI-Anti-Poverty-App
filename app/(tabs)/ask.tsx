@@ -46,28 +46,6 @@ const initialMessages: ChatMessage[] = [
       deadline: 'March 31, 2024'
     }
   },
-  {
-    id: '4',
-    text: "What documents do I need to apply?",
-    isUser: true,
-    timestamp: '10:03 AM',
-  },
-  {
-    id: '5',
-    text: "For STR application, you'll need these documents:",
-    isUser: false,
-    timestamp: '10:04 AM',
-    icon: 'file-text',
-    visualData: {
-      type: 'documentList',
-      documents: [
-        { name: 'MyKad/ID', description: 'Front and back copies' },
-        { name: 'Income Statement', description: 'Last 3 months pay slips' },
-        { name: 'Bank Account Details', description: 'Active account statement' },
-        { name: 'Dependent Information', description: 'Birth certificates if applicable' }
-      ]
-    }
-  },
 ];
 
 // Enhanced suggested questions with categories
@@ -213,6 +191,7 @@ export default function AskScreen() {
         style={styles.messagesContainer}
         ref={scrollViewRef}
         contentContainerStyle={styles.messagesContent}
+        showsVerticalScrollIndicator={true}
       >
         {messages.map(message => (
           <ChatBubble 
@@ -223,6 +202,8 @@ export default function AskScreen() {
         ))}
         
         {renderTypingIndicator()}
+        
+        <View style={{ height: 20 }} />
       </ScrollView>
       
       <View style={styles.suggestedContainer}>
@@ -301,9 +282,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 12,
+    paddingTop: 32,
     backgroundColor: theme.cardBackground,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#E5E5EA',
+    height: 100,
   },
   headerTitle: {
     fontSize: 18,
@@ -315,7 +298,8 @@ const styles = StyleSheet.create({
   },
   messagesContent: {
     paddingTop: 16,
-    paddingBottom: 16,
+    paddingBottom: 32,
+    paddingHorizontal: 8,
   },
   typingContainer: {
     flexDirection: 'row',
@@ -378,6 +362,8 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     marginRight: 8,
     borderWidth: 1,
+    flexWrap: 'wrap',
+    maxWidth: 200,
   },
   questionIcon: {
     marginRight: 6,
@@ -389,8 +375,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 16,
     paddingVertical: 12,
+    height: 80,
     backgroundColor: theme.cardBackground,
-    alignItems: 'flex-end',
+    alignItems: 'flex-start',
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: '#C7C7CC',
   },
