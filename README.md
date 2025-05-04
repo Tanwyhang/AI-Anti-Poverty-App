@@ -1,50 +1,66 @@
-# Welcome to your Expo app 👋
+# AI Poverty Exit Planner 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Welcome to the AI Anti-Poverty Planner App! This guide will help you set up and run the app on your device using **Expo Go**, even if you have no prior experience.
 
-## Get started
+---
 
-1. Install dependencies
+## Prerequisites
 
-   ```bash
-   npm install
-   ```
+Before you begin, ensure you have the following:
 
-2. Start the app
+1. **Node.js** installed on your computer. [Download Node.js here](https://nodejs.org/).
+2. **Expo Go** installed on your mobile device:
+   - [Expo Go for Android](https://play.google.com/store/apps/details?id=host.exp.exponent)
+   - [Expo Go for iOS](https://apps.apple.com/app/expo-go/id982107779)
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## Steps to Run the App
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### 1. Clone the Repository
+If you haven't already, download or clone the app's code to your computer.
 
 ```bash
-npm run reset-project
+git clone <repository-url>
+cd AI-Anti-Poverty-App
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. Install Dependencies
+On the parent directory - Install the required dependencies for the app.
 
-## Learn more
+```bash
+npm install
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+### 3. Start the Development Server
+Start the Expo development server.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npx expo start
+```
 
-## Join the community
+This will open a terminal with a QR code and options to run the app.
 
-Join our community of developers creating universal apps.
+### 4. Open the App on Your Device
+1. Open the **Expo Go** app on your mobile device.
+2. Scan the QR code displayed in the terminal or browser.
+   - For Android: Use the built-in QR scanner in Expo Go.
+   - For iOS: Use your phone's camera to scan the QR code and open it in Expo Go.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## Troubleshooting
+
+- **QR Code Not Scanning**: Ensure your computer and mobile device are on the same Wi-Fi network.
+- **Expo Go App Crashes**: Restart the Expo development server with `npx expo start` and try again.
+- **Dependencies Issue**: Run `npm install` again to ensure all dependencies are installed.
+
+---
+
+## Learn More
+
+To learn more about Expo and how it works, check out the following resources:
+- [Expo Documentation](https://docs.expo.dev/)
+- [Expo Go Overview](https://expo.dev/go)
+
+Enjoy exploring the app!
